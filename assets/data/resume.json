@@ -1,0 +1,104 @@
+{
+  "education": [
+    {
+      "institution": "Colorado Mesa University",
+      "period": "2020 - 2024",
+      "description": "Graduated with a Bachelors of Science in Computer Science"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Mental Health First Aid for Higher Education",
+      "period": "2023 (Obtained) - 2026 (Expires)",
+      "description": "Certified by the National Council for Mental Wellbeing on 08/15/2023."
+    }
+  ],
+  "experience": [
+    {
+      "title": "IT Manager",
+      "period": "August 2024 — Present",
+      "responsibilities": [
+        "Lead IT development department, overseeing the creation, testing, and deployment of interconnected apps (Student, Donor, Grant, Facilities) for enhanced data management and user support.",
+        "Designed and managed Riverside Education Center's PostgreSQL database (work in progress) to centralize and optimize data systems.",
+        "Developed automation scripts in JavaScript for data manipulation and workflow efficiencies.",
+        "Managed approximately 180-200 pieces of technology, ensuring hardware/software maintenance, updates, and cybersecurity monitoring.",
+        "Created and maintained global reports using Google Data Studio, streamlining organizational metrics.",
+        "Administered Cisco-based (Meraki) network for secure, reliable internet and device connectivity.",
+        "Directed the setup, upkeep, and security of internal camera systems and ACP printer contracts.",
+        "Delivered IT training sessions, software rollouts, and inventory management solutions.",
+        "Resolved IT help tickets related to tech, operations, bus logistics, and inventory issues.",
+        "Transitioned Google Cloud databases across Riverside Education Center's organizational systems.",
+        "Provided administrative support, including resolving IT registration issues and assisting staff."
+      ]
+    },
+    {
+      "title": "Resident Assistant",
+      "period": "2021 — 2024",
+      "responsibilities": [
+        "Managed and advised students at Colorado Mesa University to orient and improve their residential experiences and enhance campus living.",
+        "Created, planned, and facilitated an array of campus-wide educational, social, and recreational events meant to create a better quality of life and encourage positive participation through inclusivity in the community. These events served as social interactions that promoted community building and fostered peer support systems. Implemented creative and precise time management skills to accomplish these tasks.",
+        "Created and maintained positive inter-personal relationships with residents by demonstrating strong communication, time management, and encouraging teamwork.",
+        "Demonstrated strong leadership skills and excelled in conflict resolution by enforcing university and residential rules and policies through effective communication.",
+        "Enforced the rules and policies of residential life by inspecting residential halls for safety, responding to complaints, reports, requests and emergencies while serving as a positive academic and social role model.",
+        "Served as an informal mentor and counselor to dozens of incoming residents by guiding them through the difficult transition and emotional adjustments that come with leaving home and relocating away from family.",
+        "Demonstrated strong leadership by facilitating cooperative and considerate group living environments of a multi-cultural group of students by using an open and caring approach that encouraged relationship development among residents."
+      ]
+    },
+    {
+      "title": "Desk Attendant",
+      "period": "2023 — 2024",
+      "responsibilities": [
+        "On a daily basis I logged packages and aided residents with information on daily living significantly improving their quality of service and campus life.",
+        "Serving as a referral agent / information provider I routinely answered questions about policies and addressed customer concerns.",
+        "As an experienced, resident student I was able to be a resource for residents seeking guidance and help on a wide spectrum of issues that would serve to impact their experiences in a positive manner."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "IT Expertise and Leadership",
+      "description": "Proven ability to lead IT development teams, oversee app creation, and manage complex projects involving data management, infrastructure maintenance, and security. Skilled at balancing technical and managerial responsibilities to drive organizational success.",
+      "percentage": 100
+    },
+    {
+      "name": "Programming Proficiency",
+      "description": "Advanced experience in JavaScript, SQL, HTML, CSS, and Python, with demonstrated expertise in developing custom scripts for automation, data manipulation, and workflow optimization. Proficient in designing and managing databases, including PostgreSQL and Google Cloud.",
+      "percentage": 90
+    },
+    {
+      "name": "Cloud and Network Administration",
+      "description": "Expertise in Google Workspace (Cloud) database management and Cisco-based (Meraki) network administration for secure and reliable internet and device connectivity across multiple locations.",
+      "percentage": 75
+    },
+    {
+      "name": "Cybersecurity and Data Protection",
+      "description": "In-depth understanding of digital security practices, including monitoring, troubleshooting, and mitigating cybersecurity threats across all organizational IT assets.",
+      "percentage": 85
+    },
+    {
+      "name": "Systems Integration",
+      "description": "Proficient in integrating and maintaining interconnected systems, including hardware and software for applications like Student, Donor, Grant, and Facilities Management, ensuring seamless operations and data accuracy.",
+      "percentage": 90
+    },
+    {
+      "name": "Report Generation and Analytics",
+      "description": "Advanced ability to create and manage global reports using Google Data Studio, presenting actionable insights to support data-driven decision-making.",
+      "percentage": 95
+    },
+    {
+      "name": "Technical Training and Development",
+      "description": "Experienced in delivering IT training, developing new software solutions, and rolling out updates to enhance user experience and organizational efficiency.",
+      "percentage": 100
+    },
+    {
+      "name": "Project and Inventory Management",
+      "description": "Skilled in inventory tracking, system design, and managing approximately 180-200 tech assets, including their maintenance, updates, and reporting for end-of-year data.",
+      "percentage": 85
+    },
+    {
+      "name": "Administrative Support",
+      "description": "Strong interpersonal and communication skills, with a track record of effectively resolving IT-related issues and supporting parents and staff with technical assistance.",
+      "percentage": 95
+    }
+  ]
+}

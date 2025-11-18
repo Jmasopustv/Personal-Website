@@ -1,0 +1,83 @@
+{
+  "projects": [
+    {
+      "id": "finance",
+      "title": "Finance",
+      "category": "database projects",
+      "image": "project-1.jpg",
+      "link": "projects/finance.html",
+      "featured": true
+    },
+    {
+      "id": "orizon",
+      "title": "Orizon",
+      "category": "database projects",
+      "image": "project-2.png",
+      "link": "projects/orizon.html",
+      "featured": true
+    },
+    {
+      "id": "fundo",
+      "title": "Fundo",
+      "category": "web design",
+      "image": "project-3.jpg",
+      "link": "#",
+      "featured": true
+    },
+    {
+      "id": "brawlhalla",
+      "title": "Brawlhalla",
+      "category": "it manager related projects",
+      "image": "project-4.png",
+      "link": "#",
+      "featured": true
+    },
+    {
+      "id": "dsm",
+      "title": "DSM.",
+      "category": "web design",
+      "image": "project-5.png",
+      "link": "#",
+      "featured": true
+    },
+    {
+      "id": "metaspark",
+      "title": "MetaSpark",
+      "category": "web design",
+      "image": "project-6.png",
+      "link": "#",
+      "featured": true
+    },
+    {
+      "id": "summary",
+      "title": "Summary",
+      "category": "database projects",
+      "image": "project-7.png",
+      "link": "#",
+      "featured": true
+    },
+    {
+      "id": "task-manager",
+      "title": "Task Manager",
+      "category": "it manager related projects",
+      "image": "project-8.jpg",
+      "link": "#",
+      "featured": true
+    },
+    {
+      "id": "arrival",
+      "title": "Arrival",
+      "category": "database projects",
+      "image": "project-9.png",
+      "link": "#",
+      "featured": true
+    }
+  ],
+  "categories": [
+    "All",
+    "Web Design",
+    "Database Projects",
+    "IT Manager Related Projects",
+    "Video Game Design Projects"
+  ]
+}
