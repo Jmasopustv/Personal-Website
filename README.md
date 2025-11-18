@@ -104,13 +104,6 @@ Edit [assets/css/variables.css](assets/css/variables.css):
 }
 ```
 
-### Updating GitHub Username
-
-Edit [assets/js/repositories.js](assets/js/repositories.js):
-```javascript
-const githubUsername = "your-github-username";
-```
-
 ### Modifying Contact Form
 
 Update the Google Apps Script URL in [assets/js/contact-form.js](assets/js/contact-form.js):
@@ -120,15 +113,6 @@ const response = await fetch("YOUR_APPS_SCRIPT_URL", {
   body: new URLSearchParams(formData)
 });
 ```
-
----
-
-## Documentation
-
-- **[README.md](README.md)** - This file (quick start guide)
-- **[DATA_ARCHITECTURE.md](DATA_ARCHITECTURE.md)** - Detailed architecture documentation
-- **[IMPROVEMENTS_SUMMARY.md](IMPROVEMENTS_SUMMARY.md)** - Complete improvements overview
-- **[RESTRUCTURE_SUMMARY.md](RESTRUCTURE_SUMMARY.md)** - File reorganization details
 
 ---
 
