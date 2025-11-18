@@ -237,7 +237,15 @@
 
   .filter-item button.active { color: var(--orange-yellow-crayola); }
 
-  .project-list, .repositories-posts-list { grid-template-columns: 1fr 1fr; }
+  .project-list, .repositories-posts-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  .service-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
 
   .input-wrapper { grid-template-columns: 1fr 1fr; }
 
@@ -292,7 +300,15 @@
     gap: 20px 25px;
   }
 
-  .project-list { grid-template-columns: repeat(3, 1fr); }
+  .project-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .repositories-posts-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
 
   .repositories-banner-box { height: 230px; }
 }
@@ -383,4 +399,28 @@
   .social-list { justify-content: center; }
 
   .timeline-text { max-width: 700px; }
+
+  /* Modern enhancements for desktop */
+  .service-list {
+    gap: 30px;
+  }
+
+  .project-list,
+  .repositories-posts-list {
+    gap: 30px;
+  }
+
+  /* Smooth scrollbar for sticky sidebar */
+  .sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .sidebar::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.5);
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 191, 0, 0.3);
+    border-radius: 10px;
+  }
 }

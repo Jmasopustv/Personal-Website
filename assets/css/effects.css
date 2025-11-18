@@ -1,0 +1,395 @@
+/*-----------------------------------*\
+  #VISUAL EFFECTS
+  Modern design effects inspired by Awwwards
+\*-----------------------------------*/
+
+/* Animated gradient background */
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #0a0a0a 0%,
+    #1a1a1a 25%,
+    #2a1a0a 50%,
+    #1a1a1a 75%,
+    #0a0a0a 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  z-index: -2;
+}
+
+/* Noise texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Glowing orb effect */
+main::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 191, 0, 0.15) 0%,
+    transparent 70%
+  );
+  animation: float 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+main::after {
+  content: '';
+  position: fixed;
+  bottom: -50%;
+  left: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 140, 0, 0.1) 0%,
+    transparent 70%
+  );
+  animation: float 25s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Enhanced glassmorphism */
+.sidebar,
+article {
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 191, 0, 0.1);
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Navbar glass effect */
+.navbar {
+  background: rgba(28, 28, 28, 0.8);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border-top: 1px solid rgba(255, 191, 0, 0.15);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Content cards depth */
+.content-card,
+.service-item,
+.project-item > a,
+.repositories-post-item > a {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(45, 45, 45, 0.9) 0%,
+    rgba(30, 30, 30, 0.9) 100%
+  );
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.content-card::before,
+.service-item::before,
+.project-item > a::before,
+.repositories-post-item > a::before {
+  background: linear-gradient(
+    135deg,
+    rgba(45, 45, 45, 1) 0%,
+    rgba(30, 30, 30, 1) 100%
+  );
+}
+
+/* Animated border gradient */
+.content-card,
+.service-item {
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(rgba(30, 30, 30, 0.9), rgba(30, 30, 30, 0.9)),
+    linear-gradient(135deg, #ffbf00, #ff8c00, #ffbf00);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* Skills progress glow */
+.skill-progress-fill {
+  background: linear-gradient(
+    90deg,
+    var(--orange-yellow-crayola),
+    #ff8c00,
+    var(--orange-yellow-crayola)
+  );
+  background-size: 200% 100%;
+  animation: gradientShift 3s linear infinite, fillProgress 1.5s ease-out forwards;
+  box-shadow: 0 0 20px rgba(255, 191, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  100% {
+    left: 100%;
+  }
+}
+
+/* Project image overlay gradient */
+.project-img::before {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.project-item:hover .project-img::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 191, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+/* Icon glow effect */
+.icon-box {
+  background: linear-gradient(135deg, rgba(40, 40, 40, 0.8), rgba(30, 30, 30, 0.8));
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.icon-box ion-icon {
+  filter: drop-shadow(0 0 8px var(--orange-yellow-crayola));
+}
+
+/* Button futuristic effect */
+.form-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 191, 0, 0.2),
+    rgba(255, 140, 0, 0.2)
+  );
+  border: 1px solid var(--orange-yellow-crayola);
+  box-shadow:
+    0 0 20px rgba(255, 191, 0, 0.3),
+    inset 0 0 20px rgba(255, 191, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-btn::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 191, 0, 0.3),
+    rgba(255, 140, 0, 0.3)
+  );
+}
+
+.form-btn:hover {
+  box-shadow:
+    0 0 30px rgba(255, 191, 0, 0.6),
+    inset 0 0 30px rgba(255, 191, 0, 0.2);
+  border-color: #ff8c00;
+}
+
+/* Avatar holographic border */
+.avatar-box {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 191, 0, 0.3),
+    rgba(255, 140, 0, 0.3)
+  );
+  padding: 3px;
+  box-shadow: 0 0 30px rgba(255, 191, 0, 0.4);
+}
+
+.avatar-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 191, 0, 0.5),
+    transparent
+  );
+  animation: rotate360 3s linear infinite;
+}
+
+@keyframes rotate360 {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Timeline modern connector */
+.timeline-item::after {
+  background: linear-gradient(
+    to bottom,
+    var(--orange-yellow-crayola),
+    rgba(255, 191, 0, 0.5)
+  );
+  box-shadow: 0 0 10px var(--orange-yellow-crayola);
+}
+
+/* Enhanced scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--orange-yellow-crayola),
+    #ff8c00
+  );
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 191, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #ff8c00,
+    var(--orange-yellow-crayola)
+  );
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(255, 191, 0, 0.3);
+  color: var(--white-2);
+  text-shadow: 0 0 10px rgba(255, 191, 0, 0.5);
+}
+
+/* Text shadow depth */
+.h2, .h3, .h4 {
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 191, 0, 0.2);
+}
+
+/* Navbar link glow */
+.navbar-link.active {
+  text-shadow: 0 0 10px var(--orange-yellow-crayola);
+  color: var(--orange-yellow-crayola);
+}
+
+/* Project category tag */
+.project-category {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 191, 0, 0.2),
+    transparent
+  );
+  padding: 4px 12px;
+  border-radius: 4px;
+  border-left: 2px solid var(--orange-yellow-crayola);
+}
+
+/* Repository card depth */
+.repositories-post-item > a {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.repositories-post-item > a:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(255, 191, 0, 0.2);
+}
+
+/* Form input modern style */
+.form-input {
+  background: rgba(20, 20, 20, 0.5);
+  border: 1px solid rgba(255, 191, 0, 0.2);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  background: rgba(30, 30, 30, 0.8);
+  border-color: var(--orange-yellow-crayola);
+  box-shadow:
+    inset 0 2px 10px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 191, 0, 0.3);
+}
+
+/* Map glassmorphism */
+.mapbox {
+  background: rgba(20, 20, 20, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 191, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+/* Cursor trail effect (optional) */
+.cursor-trail {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 191, 0, 0.6),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+  animation: cursorFade 0.5s ease-out forwards;
+}
+
+@keyframes cursorFade {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}

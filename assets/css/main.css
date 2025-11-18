@@ -9,4 +9,7 @@
 @import url('components.css');
 @import url('layout.css');
 @import url('pages.css');
+@import url('modern-layout.css');
+@import url('animations.css');
+@import url('effects.css');
 @import url('responsive.css');

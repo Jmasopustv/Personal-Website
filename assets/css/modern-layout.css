@@ -1,0 +1,336 @@
+/*-----------------------------------*\
+  #MODERN LAYOUT ENHANCEMENTS
+  Award-winning spatial design patterns
+\*-----------------------------------*/
+
+/*
+  DESIGN PHILOSOPHY:
+  - Asymmetric grid layouts
+  - Generous white space (negative space)
+  - Overlapping elements for depth
+  - Dynamic spacing with CSS Grid
+  - Floating/sticky elements
+  - Bento box style cards
+*/
+
+/* ===== ENHANCED MAIN CONTAINER ===== */
+
+main {
+  /* Keep existing margin for mobile compatibility */
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== MODERN SIDEBAR (FLOATING CARD) ===== */
+
+.sidebar {
+  /* Don't override existing positioning and padding */
+  border-radius: 20px;
+  transform-style: preserve-3d;
+}
+
+.sidebar::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: -10px;
+  bottom: -10px;
+  background: rgba(255, 191, 0, 0.05);
+  border-radius: 24px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.sidebar:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced avatar with magnetic effect */
+.avatar-box {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sidebar:hover .avatar-box {
+  transform: scale(1.05) translateY(-5px);
+}
+
+/* ===== BENTO BOX GRID LAYOUT ===== */
+
+/* About section text improvements */
+.about-text p {
+  line-height: 1.8;
+}
+
+/* ===== SERVICE CARDS - BENTO GRID ===== */
+
+.service-item {
+  position: relative;
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.service-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  z-index: 2;
+}
+
+/* Accent corner on service cards */
+.service-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 191, 0, 0.1) 0%,
+    transparent 60%
+  );
+  border-radius: 0 20px 0 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-item:hover::after {
+  opacity: 1;
+}
+
+/* ===== FLOATING ICON BOXES ===== */
+
+.service-item:hover .icon-box {
+  transform: translateY(-5px) rotate(3deg);
+}
+
+/* ===== TIMELINE - MODERN VERTICAL LAYOUT ===== */
+
+.timeline-item {
+  position: relative;
+  border-radius: 16px;
+  background: rgba(45, 45, 45, 0.3);
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+  background: rgba(45, 45, 45, 0.6);
+  transform: translateX(8px);
+}
+
+/* Timeline pulse animation removed to avoid conflicts */
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* ===== SKILLS - MODERN GRID ===== */
+
+.skills-item {
+  position: relative;
+  border-radius: 16px;
+  background: rgba(30, 30, 30, 0.4);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.skills-item:hover {
+  background: rgba(40, 40, 40, 0.6);
+  transform: translateX(5px);
+}
+
+/* Enhanced progress bars */
+.skill-progress {
+  position: relative;
+  border-radius: 10px;
+}
+
+.skill-progress::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ===== PROJECT GRID - MASONRY STYLE ===== */
+
+.project-item,
+.repositories-post-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+/* ===== FILTER BUTTONS - PILL STYLE ===== */
+
+.filter-list {
+  border-radius: 20px;
+}
+
+.filter-btn {
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 191, 0, 0.2),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.filter-btn:hover::before,
+.filter-btn.active::before {
+  opacity: 1;
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  border-color: var(--orange-yellow-crayola);
+}
+
+.filter-btn.active {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 191, 0, 0.3),
+    rgba(255, 140, 0, 0.3)
+  );
+  border-color: var(--orange-yellow-crayola);
+  transform: scale(1.05);
+}
+
+/* ===== FLOATING NAVBAR ===== */
+
+.navbar {
+  border-radius: 24px;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 191, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar:hover {
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 191, 0, 0.2);
+}
+
+.navbar-link {
+  position: relative;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.navbar-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 191, 0, 0.1);
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.navbar-link:hover::before,
+.navbar-link.active::before {
+  opacity: 1;
+}
+
+.navbar-link:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.navbar-link.active {
+  transform: translateY(-3px);
+}
+
+/* ===== CONTACT FORM - MODERN SPACING ===== */
+
+.form-input {
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  transform: translateY(-2px);
+}
+
+.form-btn {
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.form-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* ===== CONTACT INFO CARDS ===== */
+
+.contact-item {
+  background: rgba(30, 30, 30, 0.4);
+  border-radius: 16px;
+  border-left: 3px solid var(--orange-yellow-crayola);
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+  background: rgba(40, 40, 40, 0.6);
+  transform: translateX(8px);
+  border-left-width: 5px;
+}
+
+/* ===== MAPBOX MODERN FRAME ===== */
+
+.mapbox {
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== SOCIAL LINKS - MODERN SPACING ===== */
+
+.social-item .social-link {
+  border-radius: 12px;
+  background: rgba(30, 30, 30, 0.6);
+  border: 1px solid rgba(255, 191, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.social-item .social-link:hover {
+  transform: translateY(-5px) rotate(5deg) scale(1.1);
+  background: rgba(255, 191, 0, 0.2);
+  border-color: var(--orange-yellow-crayola);
+  box-shadow: 0 8px 20px rgba(255, 191, 0, 0.3);
+}

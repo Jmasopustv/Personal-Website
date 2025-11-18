@@ -13,6 +13,7 @@ import { initRepositories } from './repositories.js';
 import { renderAbout } from './render-about.js';
 import { renderResume } from './render-resume.js';
 import { renderProjects } from './render-projects.js';
+import { initAnimations } from './animations.js';
 
 // Initialize all modules when DOM is ready
 document.addEventListener("DOMContentLoaded", async () => {
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   initNavigation();
   initContactForm();
   initRepositories();
+  initAnimations();
 
   console.log('All modules initialized successfully');
 });
