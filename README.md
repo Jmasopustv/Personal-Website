@@ -5,7 +5,6 @@ A modern, data-driven portfolio website showcasing skills, experience, projects,
 ## Key Features
 
 - **Data-Driven Architecture**: Content separated from code - update by editing JSON files
-- **63% Smaller HTML**: Reduced from 1,155 lines to 435 lines
 - **Easy Content Updates**: No coding required - just edit JSON files
 - **Fully Responsive**: Mobile-first design with breakpoints for all devices
 - **Modular CSS**: 7 organized CSS files for easy maintenance
