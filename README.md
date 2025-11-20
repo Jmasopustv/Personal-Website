@@ -1,20 +1,18 @@
 # Personal Website - John Masopust V
 
-A modern, data-driven portfolio website showcasing skills, experience, projects, and repositories with a professional dark theme.
+A modern, headless CMS-powered portfolio website showcasing skills, experience, and projects with a professional dark theme.
 
 ## Key Features
 
-- **Data-Driven Architecture**: Content separated from code - update by editing JSON files
-- **Easy Content Updates**: No coding required - just edit JSON files
+- **Headless CMS**: Powered by Strapi CMS hosted on Railway
+- **Easy Content Management**: Update content via Strapi admin panel - no code changes needed
 - **Fully Responsive**: Mobile-first design with breakpoints for all devices
 - **Modular CSS**: 7 organized CSS files for easy maintenance
-- **Modern JavaScript**: 11 ES6 modules with dynamic rendering
-- **Dynamic Content**: All content loaded from JSON and rendered on page load
+- **Modern JavaScript**: ES6 modules with dynamic API data fetching
 - **Project Filtering**: Filter and display projects by category
-- **GitHub Integration**: Automatically fetch and display your repositories
+- **GitHub Integration**: Automatically fetch and display repositories
 - **Contact Form**: Integrated with Google Apps Script
 - **Dark Theme**: Professional dark color scheme
-- **CMS-Ready**: Architecture ready for headless CMS integration
 
 ---
 
@@ -34,37 +32,28 @@ Personal-Website/
 │   │
 │   ├── js/                    # Modular JavaScript
 │   │   ├── main.js           # Entry point and orchestrator
-│   │   ├── utils.js          # Utility functions
-│   │   ├── sidebar.js        # Sidebar functionality
-│   │   ├── filter.js         # Project filtering logic
-│   │   ├── navigation.js     # Page navigation
-│   │   ├── contact-form.js   # Form handling
-│   │   ├── repositories.js   # GitHub API integration
-│   │   ├── data-loader.js    # JSON data loading utility
+│   │   ├── data-loader.js    # Strapi API data fetching
 │   │   ├── render-about.js   # About section renderer
 │   │   ├── render-resume.js  # Resume section renderer
-│   │   └── render-projects.js # Projects section renderer
+│   │   ├── render-projects.js # Projects section renderer
+│   │   ├── repositories.js   # GitHub API integration
+│   │   ├── contact-form.js   # Form handling
+│   │   ├── filter.js         # Project filtering logic
+│   │   ├── navigation.js     # Page navigation
+│   │   ├── sidebar.js        # Sidebar functionality
+│   │   └── utils.js          # Utility functions
 │   │
-│   ├── data/                  # Content (JSON files)
-│   │   ├── about.json        # About page content (bio, services)
-│   │   ├── resume.json       # Education, experience, skills, certifications
-│   │   └── projects.json     # Projects and categories
-│   │
+│   ├── data/                  # Legacy JSON files (backup)
 │   ├── images/               # All images and icons
 │   └── files/                # Downloadable files (resumes, PDFs)
 │
 ├── projects/                  # Project detail pages
-│   ├── finance.html
-│   └── orizon.html
 │
-├── index.html                # Main homepage (435 lines)
-├── index-old-backup.html     # Backup of old version (1,155 lines)
-│
+├── config.js                 # Strapi API configuration
+├── index.html                # Main homepage
 ├── CNAME                     # Custom domain configuration
 ├── LICENSE                   # License file
-│
-├── README.md                 # This file
-├── DATA_ARCHITECTURE.md      # Data-driven architecture documentation
+└── README.md                 # This file
 ```
 
 ---
@@ -76,6 +65,11 @@ Personal-Website/
 - **CSS3** - Custom properties, flexbox, grid, animations
 - **JavaScript (ES6+)** - Modules, async/await, fetch API, dynamic rendering
 
+### Backend
+- **Strapi CMS v5** - Headless content management
+- **PostgreSQL** - Database (Railway)
+- **Railway** - Cloud hosting platform
+
 ### Libraries & APIs
 - **Ionicons** - Icon library
 - **Google Fonts** - Poppins font family
@@ -83,7 +77,7 @@ Personal-Website/
 - **GitHub API** - Dynamic repository fetching
 
 ### Architecture
-- **Data-Driven Design** - JSON-based content management
+- **Headless CMS** - Strapi API backend with frontend separation
 - **Component-Based** - Modular, reusable components
 - **Mobile-First** - Responsive design approach
 
@@ -115,22 +109,12 @@ const response = await fetch("YOUR_APPS_SCRIPT_URL", {
 
 ---
 
-## Future Enhancements
+## Content Management
 
-### Planned Features
-- [ ] Blog section with markdown support
-- [ ] Multi-language support (i18n)
-- [ ] Admin dashboard for content editing
-- [ ] Dark/Light theme toggle
-- [ ] Animation improvements
-- [ ] SEO optimization
-
-### CMS Integration Ready
-The architecture is ready for:
-- Contentful
-- Strapi
-- Sanity.io
-- Any headless CMS
+Edit your website content through the Strapi admin panel:
+- **Admin URL**: https://strapibackend-production-b824.up.railway.app/admin
+- Update About, Resume, and Projects without touching code
+- Changes reflect immediately on the live site
 
 ---
 

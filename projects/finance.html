@@ -3,185 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finance Project</title>
+  <title>Finance Project - John Masopust V</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="../assets/css/main.css">
-  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <style>
-    /* General Sidebar Layout */
-    .sidebar {
-      margin: 0 auto;
-      max-width: 900px;
-      padding: 20px;
-      border-radius: 14px;
-      background: var(--eerie-black-1);
-      color: var(--eerie-black-1);
-    }
+  <link rel="stylesheet" href="../assets/css/project-detail.css">
 
-    .sidebar header {
-      text-align: center;
-      background: var(--onyx);
-      padding: 15px;
-      border-radius: 14px;
-      margin-bottom: 20px;
-    }
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../assets/images/logo.ico" type="image/x-icon">
 
-    .back-button {
-      margin-top: 15px;
-      display: inline-block;
-      padding: 10px 20px;
-      text-decoration: none;
-      color: var(--smoky-black);
-      background-color: var(--orange-yellow-crayola);
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .back-button:hover {
-      background-color: var(--white-2);
-    }
-
-    /* Carousel Styling */
-    .carousel {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      width: 100%;
-      height: auto; /* Adjusted height for responsiveness */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .carousel-images {
-      display: flex;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .carousel img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .carousel-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--orange-yellow-crayola);
-      border: none;
-      color: var(--smoky-black);
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    .carousel-button.left {
-      left: 10px;
-    }
-
-    .carousel-button.right {
-      right: 10px;
-    }
-
-    .article-title {
-      color: var(--white-2);
-      padding-bottom: 10px;
-    }
-
-    .project-details-description {
-      color: var(--white-2);
-      font-size: var(--fs-5);
-      text-align: justify;
-      line-height: 1.6;
-    }
-
-    .features-title {
-      margin-top: 20px;
-      margin-bottom: 15px;
-      color: var(--orange-yellow-crayola);
-    }
-
-    .content-card {
-      background: var(--orange-yellow-crayola);
-      color: var(--white-2);
-      padding: 15px;
-      border-radius: 14px;
-      list-style: none;
-    }
-
-    .content-card li {
-      margin-bottom: 10px;
-    }
-
-    /* Responsive Adjustments */
-    @media (min-width: 450px) {
-      .sidebar {
-        padding: 15px;
-        height: auto;
-      }
-
-      .carousel {
-        height: auto; /* Adjust height dynamically */
-      }
-
-      .carousel img {
-        height: auto; /* Ensure images are not cropped */
-      }
-
-      .content-card {
-        padding: 10px;
-        height: auto;
-      }
-    }
-  </style>
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-  <!-- Main Content -->
   <main>
-    <div class="sidebar">
-      <!-- Header Section -->
-      <header>
-        <h1 class="h2" style="color: var(--white-2);">Finance Project</h1>
-        <a href="../index.html#projects" class="back-button">Back to Projects Page</a>
+    <div class="project-container">
+
+      <!-- Header -->
+      <header class="project-header">
+        <h1 class="h2">Finance Database Project</h1>
+        <a href="../index.html#portfolio" class="back-button">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+          Back to Portfolio
+        </a>
       </header>
 
       <!-- Image Carousel -->
-      <div class="carousel">
-        <button class="carousel-button left">&lt;</button>
+      <div class="project-carousel">
+        <button class="carousel-button left" aria-label="Previous image">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </button>
         <div class="carousel-images">
-          <img src="../assets/images/project-1.jpg" alt="Finance Project">
-          <img src="../assets/images/project-2.png" alt="Project 2">
-          <img src="../assets/images/project-3.jpg" alt="Project 3">
+          <img src="../assets/images/project-1.jpg" alt="Finance Project Dashboard" loading="lazy">
+          <img src="../assets/images/project-2.png" alt="Finance Project Analytics" loading="lazy">
+          <img src="../assets/images/project-3.jpg" alt="Finance Project Reports" loading="lazy">
         </div>
-        <button class="carousel-button right">&gt;</button>
+        <button class="carousel-button right" aria-label="Next image">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
       </div>
 
-      <!-- Project Title -->
-      <h2 class="article-title">Overview</h2>
+      <!-- Overview Section -->
+      <section class="project-section">
+        <h2 class="section-title">Overview</h2>
+        <p class="project-description">
+          This project focuses on creating a comprehensive financial database for managing budgets,
+          tracking expenses, and generating detailed financial reports. Built with modern web technologies,
+          it features an intuitive dashboard that provides real-time insights into financial data.
+          The application includes custom filtering options, data visualization, and export capabilities
+          to help users make informed financial decisions.
+        </p>
+      </section>
 
-      <!-- Project Description -->
-      <p class="project-details-description">
-        This project focuses on creating a financial database for managing budgets, tracking expenses, and generating financial reports. It features a user-friendly dashboard and custom filtering options.
-      </p>
+      <!-- Key Features Section -->
+      <section class="project-section">
+        <h2 class="section-title">Key Features</h2>
+        <ul class="features-list">
+          <li>Real-time financial tracking and monitoring</li>
+          <li>Interactive dashboard with data visualizations</li>
+          <li>Custom filtering and search capabilities</li>
+          <li>Automated report generation</li>
+          <li>Budget planning and expense categorization</li>
+          <li>Secure data storage and encryption</li>
+          <li>Responsive design for mobile and desktop</li>
+          <li>Export data to multiple formats (CSV, PDF)</li>
+        </ul>
+      </section>
 
-      <!-- Additional Information -->
-      <h3 class="features-title">Features</h3>
-      <ul class="content-card">
-        <li>Real-time financial tracking</li>
-        <li>Custom filtering options</li>
-        <li>User-friendly interface</li>
-      </ul>
+      <!-- Technologies Section -->
+      <section class="project-section">
+        <h2 class="section-title">Technologies Used</h2>
+        <ul class="features-list">
+          <li>Database: PostgreSQL</li>
+          <li>Backend: Node.js, Express</li>
+          <li>Frontend: HTML5, CSS3, JavaScript</li>
+          <li>Charts: Chart.js for data visualization</li>
+        </ul>
+      </section>
+
     </div>
   </main>
 
   <script>
-    // Carousel JavaScript
+    // Carousel functionality
     const carousel = document.querySelector(".carousel-images");
-    const images = document.querySelectorAll(".carousel img");
+    const images = document.querySelectorAll(".carousel-images img");
     const prevButton = document.querySelector(".carousel-button.left");
     const nextButton = document.querySelector(".carousel-button.right");
 
@@ -200,6 +107,21 @@
     nextButton.addEventListener("click", () => {
       currentIndex = (currentIndex + 1) % images.length;
       updateCarousel();
+    });
+
+    // Auto-play carousel
+    let autoplayInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateCarousel();
+    }, 5000);
+
+    // Pause autoplay on hover
+    carousel.addEventListener("mouseenter", () => clearInterval(autoplayInterval));
+    carousel.addEventListener("mouseleave", () => {
+      autoplayInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+      }, 5000);
     });
 
     window.addEventListener("resize", updateCarousel);

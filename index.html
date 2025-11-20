@@ -427,6 +427,18 @@
 
   </main>
 
+  <!-- Admin Access (Hidden) -->
+  <div class="admin-shortcuts" style="position: fixed; bottom: 10px; right: 10px; opacity: 0.1; transition: opacity 0.3s; z-index: 1000;">
+    <a href="https://strapibackend-production-b824.up.railway.app/admin" target="_blank" rel="noopener" style="display: block; width: 8px; height: 8px; background: var(--orange-yellow-crayola); border-radius: 50%; margin-bottom: 5px;" title="Strapi Admin"></a>
+    <a href="https://railway.app/project/6cba462f-9bac-4f79-8bef-42958795e542" target="_blank" rel="noopener" style="display: block; width: 8px; height: 8px; background: var(--vegas-gold); border-radius: 50%;" title="Railway Dashboard"></a>
+  </div>
+
+  <style>
+    .admin-shortcuts:hover {
+      opacity: 1;
+    }
+  </style>
+
   <!-- JavaScript -->
   <script type="module" src="./assets/js/main.js"></script>
 
