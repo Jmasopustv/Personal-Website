@@ -1,0 +1,35 @@
+# Backend - exclude entire backend directory from GitHub Pages
+backend/
+
+# Development scripts
+start-dev.sh
+start-dev.bat
+
+# Claude Code
+.claude/
+
+# Sensitive files
+.env
+.env.local
+.env.*
+**/railway-env.txt
+**/.env
+
+# Data backups (original JSON files)
+assets/data/*.backup
+
+# Development
+node_modules/
+.DS_Store
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary documentation files
+*-SUMMARY.md
+*-TEMPLATE.md
+DEPLOYMENT.md
+QUICK-START.md
+*-DEPLOY-STEPS.md
