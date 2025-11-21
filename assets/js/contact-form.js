@@ -21,16 +21,26 @@ export function initContactForm() {
       }
 
       const formData = new FormData(form);
+      const STRAPI_URL = window.STRAPI_URL || 'http://localhost:1337/api';
 
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbzgkw7r6-_y3wkr1jyT4AhDBfEVXzJmCttNBFey1fBsP6TAA5P53-D7sEfK-04_YhTu/exec", {
+        const response = await fetch(`${STRAPI_URL}/contacts`, {
           method: "POST",
-          body: new URLSearchParams(formData),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data: {
+              name: formData.get('name'),
+              email: formData.get('email'),
+              message: formData.get('message'),
+            }
+          }),
         });
 
         const result = await response.json();
 
-        if (result.status === "success") {
+        if (result.status === "success" || response.ok) {
           console.log("Form submitted successfully!");
 
           successMessage.classList.add("show");
