@@ -325,24 +325,32 @@ async function loadAboutSection() {
   const aboutData = await fetchStrapiData('about?populate=*');
   if (!aboutData) return;
 
-  // Update about text
+  // Update about text (handle both 'bio' and 'about_text' fields)
   const aboutText = document.querySelector('[data-dynamic-content="about"]');
-  if (aboutText && aboutData.about_text) {
-    aboutText.innerHTML = aboutData.about_text.replace(/\n/g, '<br>');
+  const textContent = aboutData.bio || aboutData.about_text;
+  if (aboutText && textContent) {
+    aboutText.innerHTML = textContent.replace(/\n/g, '<br>');
   }
 
   // Load services
   const servicesGrid = document.querySelector('[data-dynamic-content="services"]');
   if (servicesGrid && aboutData.services) {
-    servicesGrid.innerHTML = aboutData.services.map(service => `
-      <div class="service-card">
-        <div class="service-icon">
-          <ion-icon name="${service.icon || 'code-outline'}"></ion-icon>
+    servicesGrid.innerHTML = aboutData.services.map(service => {
+      // Handle both SVG files and ionicon names
+      const iconHtml = service.icon && service.icon.endsWith('.svg')
+        ? `<img src="./assets/images/${service.icon}" alt="${service.title} icon">`
+        : `<ion-icon name="${service.icon || 'code-outline'}"></ion-icon>`;
+
+      return `
+        <div class="service-card">
+          <div class="service-icon">
+            ${iconHtml}
+          </div>
+          <h3 class="service-title">${service.title}</h3>
+          <p class="service-description">${service.description}</p>
         </div>
-        <h3 class="service-title">${service.title}</h3>
-        <p class="service-description">${service.description}</p>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 }
 
@@ -424,9 +432,21 @@ async function loadProjectsSection() {
   });
 
   bentoGrid.innerHTML = sortedProjects.map((project, index) => {
-    const imageSrc = project.image?.startsWith('/')
-      ? `${STRAPI_BASE_URL}${project.image}`
-      : `./assets/images/${project.image || 'project-placeholder.jpg'}`;
+    // Handle Strapi v5 image format (image is an object with url property)
+    let imageSrc = './assets/images/project-placeholder.jpg';
+    if (project.image) {
+      if (typeof project.image === 'object' && project.image.url) {
+        // Strapi v5 format: image is an object
+        imageSrc = project.image.url.startsWith('/')
+          ? `${STRAPI_BASE_URL}${project.image.url}`
+          : project.image.url;
+      } else if (typeof project.image === 'string') {
+        // Legacy format: image is a string
+        imageSrc = project.image.startsWith('/')
+          ? `${STRAPI_BASE_URL}${project.image}`
+          : `./assets/images/${project.image}`;
+      }
+    }
 
     // First 2 featured projects get large size
     const isFeatured = project.featured && index < 2;
