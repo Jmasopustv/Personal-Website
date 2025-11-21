@@ -5,7 +5,7 @@
  * Integrates all existing Strapi functionality with new modern design
  */
 
-const STRAPI_BASE_URL = 'https://backend-production-8183.up.railway.app';
+const STRAPI_BASE_URL = 'https://strapibackend-production-b824.up.railway.app';
 const API_TOKEN = 'a7e0d2be85fc6cb18fde5fd3ba4d83331d2113a1aad2c3cf1abf2dd7d34e3e32e3cb38fe18dc41f62c6feb2eaf85cf8b08c3caac7b4a5e50ea26e8ea67c4a1c71ec0f868e03f9f7ba5e4dcfe5e7a14dd2925daa8870bc6d7a7a87cf2dc03d78b5c9cc9aa33b11c37ff28ebf20f6b67dff96b15f5aff7e60e1e86f6ad1ad5e99b';
 
 // ============================================================================
