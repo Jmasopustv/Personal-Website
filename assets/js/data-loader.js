@@ -91,7 +91,8 @@ function transformStrapiResponse(filepath, strapiData) {
         category: project.category,
         // Use Strapi image if uploaded, otherwise fallback to local images
         image: project.image?.url || imageMap[project.id] || imageMap[project.title?.toLowerCase()] || 'project-1.jpg',
-        link: project.link,
+        // Use slug-based link for dynamic project pages, fallback to hardcoded link
+        link: project.slug ? `project-detail.html?project=${project.slug}` : project.link,
         featured: project.featured
       };
     });

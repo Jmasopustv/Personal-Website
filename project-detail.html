@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project - John Masopust V</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/project-detail.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <!-- Configuration -->
+  <script src="./config.js"></script>
+</head>
+<body>
+  <main>
+    <div class="project-container" id="project-content">
+      <div class="loading">Loading project...</div>
+    </div>
+  </main>
+
+  <script type="module">
+    const STRAPI_URL = window.STRAPI_URL || 'http://localhost:1337/api';
+
+    // Get project slug from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectSlug = urlParams.get('project');
+
+    if (!projectSlug) {
+      document.getElementById('project-content').innerHTML = `
+        <div class="error">
+          <h2>Project not found</h2>
+          <a href="./index.html#portfolio" class="back-button">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Back to Portfolio
+          </a>
+        </div>
+      `;
+    } else {
+      loadProject(projectSlug);
+    }
+
+    async function loadProject(slug) {
+      try {
+        const response = await fetch(`${STRAPI_URL}/projects?filters[slug][$eq]=${slug}&populate=*`);
+        const data = await response.json();
+
+        if (!data.data || data.data.length === 0) {
+          throw new Error('Project not found');
+        }
+
+        const project = data.data[0];
+        renderProject(project);
+      } catch (error) {
+        console.error('Error loading project:', error);
+        document.getElementById('project-content').innerHTML = `
+          <div class="error">
+            <h2>Error loading project</h2>
+            <p>${error.message}</p>
+            <a href="./index.html#portfolio" class="back-button">
+              <ion-icon name="arrow-back-outline"></ion-icon>
+              Back to Portfolio
+            </a>
+          </div>
+        `;
+      }
+    }
+
+    function renderProject(project) {
+      // Update page title
+      document.title = `${project.title} - John Masopust V`;
+
+      // Render gallery images
+      let galleryHTML = '';
+      if (project.gallery && project.gallery.length > 0) {
+        const images = project.gallery.map(img =>
+          `<img src="${STRAPI_URL.replace('/api', '')}${img.url}" alt="${img.alternativeText || project.title}" loading="lazy">`
+        ).join('');
+
+        galleryHTML = `
+          <div class="project-carousel">
+            <button class="carousel-button left" aria-label="Previous image">
+              <ion-icon name="chevron-back-outline"></ion-icon>
+            </button>
+            <div class="carousel-images">
+              ${images}
+            </div>
+            <button class="carousel-button right" aria-label="Next image">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
+          </div>
+        `;
+      }
+
+      // Render features list
+      let featuresHTML = '';
+      if (project.features && Array.isArray(project.features) && project.features.length > 0) {
+        const featuresList = project.features.map(feature => `<li>${feature}</li>`).join('');
+        featuresHTML = `
+          <section class="project-section">
+            <h2 class="section-title">Key Features</h2>
+            <ul class="features-list">
+              ${featuresList}
+            </ul>
+          </section>
+        `;
+      }
+
+      // Render technologies list
+      let technologiesHTML = '';
+      if (project.technologies && Array.isArray(project.technologies) && project.technologies.length > 0) {
+        const techList = project.technologies.map(tech => `<li>${tech}</li>`).join('');
+        technologiesHTML = `
+          <section class="project-section">
+            <h2 class="section-title">Technologies Used</h2>
+            <ul class="features-list">
+              ${techList}
+            </ul>
+          </section>
+        `;
+      }
+
+      // Render full page
+      document.getElementById('project-content').innerHTML = `
+        <!-- Header -->
+        <header class="project-header">
+          <h1 class="h2">${project.title}</h1>
+          <a href="./index.html#portfolio" class="back-button">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Back to Portfolio
+          </a>
+        </header>
+
+        ${galleryHTML}
+
+        <!-- Overview Section -->
+        <section class="project-section">
+          <h2 class="section-title">Overview</h2>
+          <p class="project-description">
+            ${project.overview || project.description || 'No description available.'}
+          </p>
+        </section>
+
+        ${featuresHTML}
+        ${technologiesHTML}
+      `;
+
+      // Initialize carousel if there are gallery images
+      if (project.gallery && project.gallery.length > 1) {
+        initCarousel();
+      }
+    }
+
+    function initCarousel() {
+      const carousel = document.querySelector(".carousel-images");
+      const images = document.querySelectorAll(".carousel-images img");
+      const prevButton = document.querySelector(".carousel-button.left");
+      const nextButton = document.querySelector(".carousel-button.right");
+
+      if (!carousel || !images.length) return;
+
+      let currentIndex = 0;
+
+      function updateCarousel() {
+        const imageWidth = carousel.offsetWidth;
+        carousel.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
+      }
+
+      prevButton.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateCarousel();
+      });
+
+      nextButton.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+      });
+
+      // Auto-play carousel
+      let autoplayInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+      }, 5000);
+
+      // Pause autoplay on hover
+      carousel.addEventListener("mouseenter", () => clearInterval(autoplayInterval));
+      carousel.addEventListener("mouseleave", () => {
+        autoplayInterval = setInterval(() => {
+          currentIndex = (currentIndex + 1) % images.length;
+          updateCarousel();
+        }, 5000);
+      });
+
+      window.addEventListener("resize", updateCarousel);
+    }
+  </script>
+</body>
+</html>
