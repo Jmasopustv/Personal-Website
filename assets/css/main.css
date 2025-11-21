@@ -1122,16 +1122,23 @@ textarea.form-control {
 }
 
 .footer-admin a {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
-  transition: color 0.3s var(--ease-smooth);
-  opacity: 0.3;
+  transition: all 0.3s var(--ease-smooth);
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 500;
 }
 
 .footer-admin a:hover {
-  color: rgba(255, 255, 255, 0.5);
-  opacity: 1;
+  color: var(--color-cyan);
+  background: rgba(32, 105, 224, 0.15);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(32, 105, 224, 0.3);
 }
 
 .footer-links {
