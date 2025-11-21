@@ -26,6 +26,9 @@ export function initNavigation() {
       );
       if (contactNavLink) contactNavLink.classList.add("active");
 
+      // Save active nav to localStorage
+      localStorage.setItem('activeNav', 'contact');
+
       window.scrollTo(0, 0);
     });
   }
@@ -48,24 +51,39 @@ export function initNavigation() {
       navigationLinks.forEach((navLink) => navLink.classList.remove("active"));
       this.classList.add("active");
 
+      // Save active nav to localStorage
+      localStorage.setItem('activeNav', targetPage);
+
       window.scrollTo(0, 0);
     });
   });
 
-  // Handle URL hash on page load
+  // Handle URL hash or localStorage on page load
   const fragment = window.location.hash.slice(1);
+  const savedNav = localStorage.getItem('activeNav');
 
-  if (fragment) {
-    console.log(`Loading fragment: ${fragment}`);
-    for (let i = 0; i < pages.length; i++) {
-      if (pages[i].dataset.page === fragment) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
+  // Priority: URL hash > localStorage > default (About)
+  const targetPage = fragment || savedNav || 'about';
+
+  if (targetPage && targetPage !== 'about') {
+    console.log(`Loading page: ${targetPage}`);
+
+    // Find matching page and nav link
+    pages.forEach((page) => {
+      if (page.dataset.page === targetPage) {
+        page.classList.add("active");
       } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
+        page.classList.remove("active");
       }
-    }
+    });
+
+    navigationLinks.forEach((link) => {
+      if (link.textContent.trim().toLowerCase() === targetPage) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
   }
 
   console.log("Navigation initialized!");
