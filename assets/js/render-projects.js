@@ -12,21 +12,30 @@ export async function renderProjects() {
   // Render project list
   const projectList = document.querySelector('.project-list');
   if (projectList && data.projects) {
+    const STRAPI_BASE_URL = window.STRAPI_URL ? window.STRAPI_URL.replace('/api', '') : 'http://localhost:1337';
+
     projectList.innerHTML = data.projects
-      .map(project => `
-        <li class="project-item active" data-filter-item data-category="${project.category}">
-          <a href="${project.link}">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
-              <img src="./assets/images/${project.image}" alt="${project.title}" loading="lazy">
-            </figure>
-            <h3 class="project-title">${project.title}</h3>
-            <p class="project-category">${project.category.charAt(0).toUpperCase() + project.category.slice(1)}</p>
-          </a>
-        </li>
-      `)
+      .map(project => {
+        // Check if image is a Strapi URL (starts with /) or a local filename
+        const imageSrc = project.image.startsWith('/')
+          ? `${STRAPI_BASE_URL}${project.image}`
+          : `./assets/images/${project.image}`;
+
+        return `
+          <li class="project-item active" data-filter-item data-category="${project.category}">
+            <a href="${project.link}">
+              <figure class="project-img">
+                <div class="project-item-icon-box">
+                  <ion-icon name="eye-outline"></ion-icon>
+                </div>
+                <img src="${imageSrc}" alt="${project.title}" loading="lazy">
+              </figure>
+              <h3 class="project-title">${project.title}</h3>
+              <p class="project-category">${project.category.charAt(0).toUpperCase() + project.category.slice(1)}</p>
+            </a>
+          </li>
+        `;
+      })
       .join('');
   }
 
