@@ -419,10 +419,10 @@ async function loadResumeSection() {
   const skillsCloud = document.querySelector('[data-dynamic-content="skills"]');
   if (skillsCloud && resumeData.skills) {
     skillsCloud.innerHTML = resumeData.skills.map(skill => {
-      const title = skill.description
-        ? `${skill.name}\n${skill.description}`
-        : skill.name;
-      return `<span class="skill-tag" title="${title}">${skill.name}</span>`;
+      const descriptionAttr = skill.description
+        ? `data-description="${skill.description.replace(/"/g, '&quot;')}"`
+        : '';
+      return `<span class="skill-tag" ${descriptionAttr}>${skill.name}</span>`;
     }).join('');
   }
 }

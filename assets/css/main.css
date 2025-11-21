@@ -647,7 +647,7 @@ body {
 /* About Grid */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: var(--space-3xl);
 }
 
@@ -671,6 +671,7 @@ body {
 
 .services-grid {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-lg);
 }
 
@@ -855,6 +856,8 @@ body {
   font-size: 14px;
   transition: all 0.3s var(--ease-smooth);
   backdrop-filter: blur(10px);
+  position: relative;
+  cursor: help;
 }
 
 .skill-tag:hover {
@@ -862,6 +865,54 @@ body {
   border-color: transparent;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(32, 105, 224, 0.3);
+}
+
+/* Skill tooltip */
+.skill-tag[data-description]::after {
+  content: attr(data-description);
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(5, 5, 16, 0.98);
+  border: 1px solid var(--color-primary);
+  border-radius: 12px;
+  padding: var(--space-md) var(--space-lg);
+  color: var(--color-text-dim);
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 400;
+  white-space: normal;
+  width: max-content;
+  max-width: 300px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s var(--ease-smooth);
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.skill-tag[data-description]::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--color-primary);
+  opacity: 0;
+  transition: all 0.3s var(--ease-smooth);
+  z-index: 1001;
+}
+
+.skill-tag[data-description]:hover::after,
+.skill-tag[data-description]:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Bento Grid */
@@ -967,6 +1018,117 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+/* Project Card Styles */
+.project-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.project-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(32, 105, 224, 0.15), rgba(64, 224, 208, 0.15));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+.bento-item:hover .project-image img {
+  transform: scale(1.1);
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 16, 0.8), transparent);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bento-item:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  transform: translateY(20px);
+  transition: transform 0.3s var(--ease-smooth);
+}
+
+.bento-item:hover .project-icon {
+  transform: translateY(0);
+}
+
+.project-info {
+  padding: var(--space-lg);
+}
+
+.project-tag {
+  display: inline-block;
+  color: var(--color-cyan);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: var(--space-sm);
+  padding: 4px 12px;
+  background: rgba(32, 105, 224, 0.15);
+  border: 1px solid rgba(32, 105, 224, 0.3);
+  border-radius: 6px;
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+}
+
+.project-description {
+  color: var(--color-text-dim);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Featured project adjustments */
+.bento-item.featured .project-image {
+  height: 400px;
+}
+
+.bento-item.featured .project-title {
+  font-size: 1.5rem;
+}
+
+.bento-item.featured .project-description {
+  font-size: 15px;
 }
 
 /* Contact Grid */
