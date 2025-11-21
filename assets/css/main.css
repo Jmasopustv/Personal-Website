@@ -77,23 +77,25 @@ body {
 }
 
 .cursor-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: var(--color-cyan);
-  box-shadow: 0 0 20px var(--color-cyan);
+  box-shadow: 0 0 8px rgba(0, 217, 255, 0.3);
+  opacity: 0.6;
 }
 
 .cursor-outline {
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(0, 217, 255, 0.3);
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 217, 255, 0.15);
   transition: width 0.3s var(--ease-smooth), height 0.3s var(--ease-smooth);
+  opacity: 0.5;
 }
 
 .cursor-outline.expand {
-  width: 60px;
-  height: 60px;
-  border-color: var(--color-primary);
+  width: 45px;
+  height: 45px;
+  border-color: rgba(32, 105, 224, 0.3);
 }
 
 /* Ambient Background */
@@ -841,16 +843,16 @@ body {
 
 /* Skills Cloud */
 .skills-cloud {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: var(--space-md);
 }
 
 .skill-tag {
-  padding: var(--space-sm) var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  border-radius: 100px;
+  border-radius: 12px;
   color: var(--color-text);
   font-weight: 600;
   font-size: 14px;
@@ -858,6 +860,7 @@ body {
   backdrop-filter: blur(10px);
   position: relative;
   cursor: help;
+  text-align: center;
 }
 
 .skill-tag:hover {
@@ -924,27 +927,40 @@ body {
   flex-wrap: wrap;
 }
 
-.filter-btn {
+.project-filter-dropdown {
   padding: var(--space-sm) var(--space-xl);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 100px;
-  color: var(--color-text-dim);
+  color: var(--color-text);
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s var(--ease-smooth);
+  backdrop-filter: blur(10px);
+  outline: none;
+  min-width: 180px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300d9ff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-md) center;
+  padding-right: calc(var(--space-xl) + 20px);
 }
 
-.filter-btn:hover {
-  color: var(--color-text);
+.project-filter-dropdown:hover {
   border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(32, 105, 224, 0.2);
 }
 
-.filter-btn.active {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-cyan));
-  color: white;
-  border-color: transparent;
-  box-shadow: 0 8px 24px rgba(32, 105, 224, 0.3);
+.project-filter-dropdown:focus {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+}
+
+.project-filter-dropdown option {
+  background: var(--color-bg-dark);
+  color: var(--color-text);
+  padding: var(--space-sm);
 }
 
 .bento-grid {

@@ -465,7 +465,7 @@ async function loadProjectsSection() {
 
     return `
       <div class="bento-item ${featuredClass}" data-category="${project.category || 'all'}">
-        <a href="${project.link || `./project-detail.html?slug=${project.slug}`}" class="project-card">
+        <a href="./project-detail.html?slug=${project.slug}" class="project-card">
           <div class="project-image">
             <img src="${imageSrc}" alt="${project.title}" loading="lazy">
             <div class="project-overlay">
@@ -484,35 +484,42 @@ async function loadProjectsSection() {
     `;
   }).join('');
 
-  // Initialize project filter
-  initProjectFilter();
+  // Initialize project filter dropdown with categories
+  initProjectFilter(projectsData);
 }
 
 // Project Filter
-function initProjectFilter() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
+function initProjectFilter(projects) {
+  const dropdown = document.getElementById('projectFilter');
   const projectItems = document.querySelectorAll('.bento-item');
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
+  if (!dropdown || !projects) return;
 
-      // Update active button
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  // Get unique categories
+  const categories = [...new Set(projects.map(p => p.category).filter(Boolean))];
 
-      // Filter projects
-      projectItems.forEach(item => {
-        const category = item.getAttribute('data-category');
+  // Populate dropdown with categories
+  categories.forEach(category => {
+    const option = document.createElement('option');
+    option.value = category;
+    option.textContent = category;
+    dropdown.appendChild(option);
+  });
 
-        if (filter === 'all' || category === filter) {
-          item.style.display = 'block';
-          setTimeout(() => item.style.opacity = '1', 10);
-        } else {
-          item.style.opacity = '0';
-          setTimeout(() => item.style.display = 'none', 300);
-        }
-      });
+  // Handle filter change
+  dropdown.addEventListener('change', (e) => {
+    const filter = e.target.value;
+
+    projectItems.forEach(item => {
+      const category = item.getAttribute('data-category');
+
+      if (filter === 'all' || category === filter) {
+        item.style.display = 'block';
+        setTimeout(() => item.style.opacity = '1', 10);
+      } else {
+        item.style.opacity = '0';
+        setTimeout(() => item.style.display = 'none', 300);
+      }
     });
   });
 }
