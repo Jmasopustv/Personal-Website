@@ -312,8 +312,8 @@ body {
   padding: var(--space-3xl) var(--space-xl);
   display: flex;
   align-items: center;
-  opacity: 0;
-  transform: translateY(50px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
 }
 
@@ -1097,6 +1097,10 @@ textarea.form-control {
   margin-bottom: var(--space-xl);
 }
 
+.footer-brand {
+  padding-right: var(--space-xl);
+}
+
 .footer-brand h3 {
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -1107,6 +1111,27 @@ textarea.form-control {
 
 .footer-brand p {
   color: var(--color-text-dim);
+  margin-bottom: var(--space-sm);
+}
+
+/* Discreet admin links */
+.footer-admin {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.footer-admin a {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+  transition: color 0.3s var(--ease-smooth);
+  opacity: 0.3;
+}
+
+.footer-admin a:hover {
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
 }
 
 .footer-links {
@@ -1156,7 +1181,7 @@ textarea.form-control {
     transform: translateX(-100%);
   }
 
-  .main-nav.active {
+  .main-nav.mobile-active {
     transform: translateX(0);
   }
 
@@ -1181,6 +1206,18 @@ textarea.form-control {
     height: 2px;
     background: var(--color-text);
     transition: all 0.3s var(--ease-smooth);
+  }
+
+  .mobile-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   .main-content {
@@ -1209,8 +1246,18 @@ textarea.form-control {
 }
 
 @media (max-width: 640px) {
+  .section {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
   .hero-cta {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .hero-stats {
@@ -1225,6 +1272,28 @@ textarea.form-control {
   .bento-item.large {
     grid-column: span 1;
     grid-row: span 1;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline {
+    padding-left: var(--space-md);
+  }
+
+  .skills-cloud {
+    justify-content: center;
+  }
+
+  .mobile-toggle {
+    top: var(--space-md);
+    right: var(--space-md);
+  }
+
+  .main-nav {
+    width: 80%;
+    max-width: 280px;
   }
 }
 

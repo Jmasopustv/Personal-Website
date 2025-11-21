@@ -169,40 +169,77 @@ function initNavigation() {
   const mobileMenuBtn = document.querySelector('.mobile-toggle');
   const mainNav = document.querySelector('.main-nav');
 
-  // Section switching
+  // Section switching with smooth scroll
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.getAttribute('href').slice(1);
-
-      // Update active states
-      navLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-
-      sections.forEach(s => s.classList.remove('active'));
       const targetSection = document.getElementById(targetId);
+
       if (targetSection) {
-        targetSection.classList.add('active');
+        // Smooth scroll to section
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+
+        // Update active states
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
 
         // Save to localStorage for refresh persistence
         localStorage.setItem('activeSection', targetId);
 
-        // Update URL hash
-        window.location.hash = targetId;
+        // Update URL hash without jumping
+        history.pushState(null, null, `#${targetId}`);
       }
     });
   });
 
+  // Scroll spy - update active nav based on scroll position
+  let ticking = false;
+
+  function updateActiveNav() {
+    const scrollPosition = window.scrollY + 100; // Offset for nav height
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+            localStorage.setItem('activeSection', sectionId);
+          }
+        });
+      }
+    });
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateActiveNav);
+      ticking = true;
+    }
+  });
+
   // Restore active section on load
   const savedSection = localStorage.getItem('activeSection') || window.location.hash.slice(1) || 'home';
-  const savedLink = document.querySelector(`.nav-link[href="#${savedSection}"]`);
   const savedSectionEl = document.getElementById(savedSection);
 
-  if (savedLink && savedSectionEl) {
-    navLinks.forEach(l => l.classList.remove('active'));
-    savedLink.classList.add('active');
-    sections.forEach(s => s.classList.remove('active'));
-    savedSectionEl.classList.add('active');
+  if (savedSectionEl) {
+    // Scroll to saved section on load
+    setTimeout(() => {
+      savedSectionEl.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 100);
   }
 
   // Mobile menu toggle
