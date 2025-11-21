@@ -5,201 +5,362 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project - John Masopust V</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./assets/css/main.css">
-  <link rel="stylesheet" href="./assets/css/project-detail.css">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Project detail page">
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
 
-  <!-- Ionicons -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <!-- Google Fonts - Modern Stack -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/project-detail.css">
 
   <!-- Configuration -->
   <script src="./config.js"></script>
 </head>
-<body>
-  <main>
-    <div class="project-container" id="project-content">
-      <div class="loading">Loading project...</div>
+<body class="project-detail-page">
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Ambient Background Gradient -->
+  <div class="ambient-bg">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+  </div>
+
+  <!-- Back Button Navigation -->
+  <nav class="detail-nav">
+    <a href="./index.html#projects" class="back-button">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      <span>Back to Projects</span>
+    </a>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="detail-main">
+    <div class="container">
+      <div id="project-content" class="project-content">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <p>Loading project...</p>
+        </div>
+      </div>
     </div>
   </main>
 
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <!-- Project Detail Script -->
   <script type="module">
-    const STRAPI_URL = window.STRAPI_URL || 'http://localhost:1337/api';
+    const STRAPI_BASE_URL = 'https://backend-production-8183.up.railway.app';
+    const API_TOKEN = 'a7e0d2be85fc6cb18fde5fd3ba4d83331d2113a1aad2c3cf1abf2dd7d34e3e32e3cb38fe18dc41f62c6feb2eaf85cf8b08c3caac7b4a5e50ea26e8ea67c4a1c71ec0f868e03f9f7ba5e4dcfe5e7a14dd2925daa8870bc6d7a7a87cf2dc03d78b5c9cc9aa33b11c37ff28ebf20f6b67dff96b15f5aff7e60e1e86f6ad1ad5e99b';
+
+    // Initialize particles.js
+    function initParticles() {
+      if (typeof particlesJS === 'undefined') return;
+
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 60, density: { enable: true, value_area: 800 } },
+          color: { value: '#2069e0' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.3, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
+          size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1 } },
+          line_linked: { enable: true, distance: 150, color: '#2069e0', opacity: 0.2, width: 1 },
+          move: { enable: true, speed: 1, direction: 'none', random: true, out_mode: 'out' }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } },
+          modes: { grab: { distance: 200, line_linked: { opacity: 0.5 } }, push: { particles_nb: 4 } }
+        },
+        retina_detect: true
+      });
+    }
+
+    // Initialize custom cursor
+    function initCustomCursor() {
+      const cursorDot = document.querySelector('.cursor-dot');
+      const cursorOutline = document.querySelector('.cursor-outline');
+      if (!cursorDot || !cursorOutline) return;
+
+      let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+      });
+
+      function animateOutline() {
+        outlineX += (mouseX - outlineX) * 0.15;
+        outlineY += (mouseY - outlineY) * 0.15;
+        cursorOutline.style.left = `${outlineX}px`;
+        cursorOutline.style.top = `${outlineY}px`;
+        requestAnimationFrame(animateOutline);
+      }
+      animateOutline();
+
+      document.querySelectorAll('a, button, .carousel-button').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+          cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+          cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+      });
+    }
 
     // Get project slug from URL parameter
     const urlParams = new URLSearchParams(window.location.search);
-    const projectSlug = urlParams.get('project');
+    const projectSlug = urlParams.get('slug') || urlParams.get('project');
 
     if (!projectSlug) {
-      document.getElementById('project-content').innerHTML = `
-        <div class="error">
-          <h2>Project not found</h2>
-          <a href="./index.html#projects" class="back-button" style="cursor: pointer; border: none; background: var(--bg-gradient-yellow-1); display: inline-block; padding: 12px 24px; text-decoration: none; color: var(--smoky-black); border-radius: 14px; font-weight: var(--fw-300); transition: var(--transition-1);">
-            <ion-icon name="arrow-back-outline"></ion-icon>
-            Back to Projects
-          </a>
-        </div>
-      `;
+      showError('Project not found', 'No project slug provided in URL.');
     } else {
       loadProject(projectSlug);
     }
 
     async function loadProject(slug) {
       try {
-        const response = await fetch(`${STRAPI_URL}/projects?filters[slug][$eq]=${slug}&populate=*`);
+        const response = await fetch(`${STRAPI_BASE_URL}/api/projects?filters[slug][$eq]=${slug}&populate=*`, {
+          headers: { 'Authorization': `Bearer ${API_TOKEN}` }
+        });
+
         const data = await response.json();
 
         if (!data.data || data.data.length === 0) {
-          throw new Error('Project not found');
+          throw new Error('Project not found in database.');
         }
 
         const project = data.data[0];
         renderProject(project);
       } catch (error) {
         console.error('Error loading project:', error);
-        document.getElementById('project-content').innerHTML = `
-          <div class="error">
-            <h2>Error loading project</h2>
-            <p>${error.message}</p>
-            <a href="./index.html#projects" class="back-button" style="cursor: pointer; border: none; background: var(--bg-gradient-yellow-1); display: inline-block; padding: 12px 24px; text-decoration: none; color: var(--smoky-black); border-radius: 14px; font-weight: var(--fw-300); transition: var(--transition-1);">
-              <ion-icon name="arrow-back-outline"></ion-icon>
-              Back to Projects
-            </a>
-          </div>
-        `;
+        showError('Error loading project', error.message);
       }
     }
 
+    function showError(title, message) {
+      document.getElementById('project-content').innerHTML = `
+        <div class="error-container">
+          <div class="error-icon">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+          </div>
+          <h2>${title}</h2>
+          <p>${message}</p>
+          <a href="./index.html#projects" class="cta-button">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Back to Projects
+          </a>
+        </div>
+      `;
+    }
+
     function renderProject(project) {
-      // Update page title
       document.title = `${project.title} - John Masopust V`;
 
-      // Render gallery images
+      // Render gallery carousel
       let galleryHTML = '';
       if (project.gallery && project.gallery.length > 0) {
-        const images = project.gallery.map(img =>
-          `<img src="${STRAPI_URL.replace('/api', '')}${img.url}" alt="${img.alternativeText || project.title}" loading="lazy">`
-        ).join('');
+        const images = project.gallery.map((img, idx) => `
+          <div class="carousel-slide ${idx === 0 ? 'active' : ''}">
+            <img src="${STRAPI_BASE_URL}${img.url}" alt="${img.alternativeText || project.title}" loading="lazy">
+          </div>
+        `).join('');
 
         galleryHTML = `
-          <div class="project-carousel">
-            <button class="carousel-button left" aria-label="Previous image">
-              <ion-icon name="chevron-back-outline"></ion-icon>
-            </button>
-            <div class="carousel-images">
-              ${images}
+          <div class="project-gallery">
+            <div class="carousel-container">
+              <button class="carousel-button prev" aria-label="Previous image">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </button>
+              <div class="carousel-track">
+                ${images}
+              </div>
+              <button class="carousel-button next" aria-label="Next image">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </button>
             </div>
-            <button class="carousel-button right" aria-label="Next image">
-              <ion-icon name="chevron-forward-outline"></ion-icon>
-            </button>
+            <div class="carousel-indicators">
+              ${project.gallery.map((_, idx) => `
+                <button class="indicator ${idx === 0 ? 'active' : ''}" data-index="${idx}"></button>
+              `).join('')}
+            </div>
           </div>
         `;
       }
 
-      // Render features list
+      // Render features
       let featuresHTML = '';
       if (project.features && Array.isArray(project.features) && project.features.length > 0) {
-        const featuresList = project.features.map(feature => `<li>${feature}</li>`).join('');
         featuresHTML = `
-          <section class="project-section">
+          <div class="detail-section features-section">
             <h2 class="section-title">Key Features</h2>
-            <ul class="features-list">
-              ${featuresList}
-            </ul>
-          </section>
+            <div class="features-grid">
+              ${project.features.map((feature, idx) => `
+                <div class="feature-card">
+                  <div class="feature-number">${String(idx + 1).padStart(2, '0')}</div>
+                  <p>${feature}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
         `;
       }
 
-      // Render technologies list
-      let technologiesHTML = '';
+      // Render technologies
+      let techHTML = '';
       if (project.technologies && Array.isArray(project.technologies) && project.technologies.length > 0) {
-        const techList = project.technologies.map(tech => `<li>${tech}</li>`).join('');
-        technologiesHTML = `
-          <section class="project-section">
+        techHTML = `
+          <div class="detail-section tech-section">
             <h2 class="section-title">Technologies Used</h2>
-            <ul class="features-list">
-              ${techList}
-            </ul>
-          </section>
+            <div class="tech-grid">
+              ${project.technologies.map(tech => `
+                <span class="tech-tag">${tech}</span>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Render project links
+      let linksHTML = '';
+      if (project.link || project.github) {
+        linksHTML = `
+          <div class="project-links">
+            ${project.link ? `
+              <a href="${project.link}" target="_blank" rel="noopener" class="cta-button primary">
+                <ion-icon name="open-outline"></ion-icon>
+                View Live Project
+              </a>
+            ` : ''}
+            ${project.github ? `
+              <a href="${project.github}" target="_blank" rel="noopener" class="cta-button secondary">
+                <ion-icon name="logo-github"></ion-icon>
+                View Code
+              </a>
+            ` : ''}
+          </div>
         `;
       }
 
       // Render full page
       document.getElementById('project-content').innerHTML = `
-        <!-- Header -->
-        <header class="project-header">
-          <h1 class="h2">${project.title}</h1>
-          <a href="./index.html#projects" class="back-button" style="cursor: pointer; border: none; background: var(--bg-gradient-yellow-1); display: inline-block; padding: 12px 24px; text-decoration: none; color: var(--smoky-black); border-radius: 14px; font-weight: var(--fw-300); transition: var(--transition-1);">
-            <ion-icon name="arrow-back-outline"></ion-icon>
-            Back to Projects
-          </a>
-        </header>
+        <div class="project-hero">
+          <div class="project-meta">
+            ${project.category ? `<span class="project-category">${project.category}</span>` : ''}
+            ${project.date ? `<span class="project-date">${new Date(project.date).getFullYear()}</span>` : ''}
+          </div>
+          <h1 class="project-title">${project.title}</h1>
+          <p class="project-excerpt">${project.description || ''}</p>
+          ${linksHTML}
+        </div>
 
         ${galleryHTML}
 
-        <!-- Overview Section -->
-        <section class="project-section">
+        <div class="detail-section overview-section">
           <h2 class="section-title">Overview</h2>
-          <p class="project-description">
-            ${project.overview || project.description || 'No description available.'}
-          </p>
-        </section>
+          <div class="overview-content">
+            <p>${project.overview || project.description || 'No detailed overview available.'}</p>
+          </div>
+        </div>
 
         ${featuresHTML}
-        ${technologiesHTML}
+        ${techHTML}
       `;
 
-      // Initialize carousel if there are gallery images
+      // Initialize carousel if gallery exists
       if (project.gallery && project.gallery.length > 1) {
-        initCarousel();
+        setTimeout(initCarousel, 100);
       }
+
+      // Animate sections
+      setTimeout(() => {
+        gsap.from('.project-hero', { y: 60, opacity: 0, duration: 1, ease: 'power3.out' });
+        gsap.from('.detail-section', {
+          y: 80,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power2.out',
+          delay: 0.3
+        });
+      }, 100);
     }
 
     function initCarousel() {
-      const carousel = document.querySelector(".carousel-images");
-      const images = document.querySelectorAll(".carousel-images img");
-      const prevButton = document.querySelector(".carousel-button.left");
-      const nextButton = document.querySelector(".carousel-button.right");
+      const track = document.querySelector('.carousel-track');
+      const slides = document.querySelectorAll('.carousel-slide');
+      const prevBtn = document.querySelector('.carousel-button.prev');
+      const nextBtn = document.querySelector('.carousel-button.next');
+      const indicators = document.querySelectorAll('.carousel-indicators .indicator');
 
-      if (!carousel || !images.length) return;
+      if (!track || slides.length === 0) return;
 
       let currentIndex = 0;
 
       function updateCarousel() {
-        const imageWidth = carousel.offsetWidth;
-        carousel.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
+        slides.forEach((slide, idx) => {
+          slide.classList.toggle('active', idx === currentIndex);
+        });
+        indicators.forEach((indicator, idx) => {
+          indicator.classList.toggle('active', idx === currentIndex);
+        });
       }
 
-      prevButton.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
+      function goToSlide(index) {
+        currentIndex = (index + slides.length) % slides.length;
         updateCarousel();
+      }
+
+      prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+      nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+      indicators.forEach((indicator, idx) => {
+        indicator.addEventListener('click', () => goToSlide(idx));
       });
 
-      nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateCarousel();
+      // Auto-play
+      let autoplayInterval = setInterval(() => goToSlide(currentIndex + 1), 5000);
+
+      track.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+      track.addEventListener('mouseleave', () => {
+        autoplayInterval = setInterval(() => goToSlide(currentIndex + 1), 5000);
       });
 
-      // Auto-play carousel
-      let autoplayInterval = setInterval(() => {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateCarousel();
-      }, 5000);
-
-      // Pause autoplay on hover
-      carousel.addEventListener("mouseenter", () => clearInterval(autoplayInterval));
-      carousel.addEventListener("mouseleave", () => {
-        autoplayInterval = setInterval(() => {
-          currentIndex = (currentIndex + 1) % images.length;
-          updateCarousel();
-        }, 5000);
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
+        if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
       });
-
-      window.addEventListener("resize", updateCarousel);
     }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+      initParticles();
+      initCustomCursor();
+    });
   </script>
 </body>
 </html>
