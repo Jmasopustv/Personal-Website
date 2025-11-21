@@ -366,9 +366,9 @@ async function loadResumeSection() {
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <span class="timeline-date">${item.start_date} - ${item.end_date || 'Present'}</span>
-          <h3 class="timeline-title">${item.degree}</h3>
-          <p class="timeline-subtitle">${item.institution}</p>
+          <span class="timeline-date">${item.period || ''}</span>
+          <h3 class="timeline-title">${item.degree || item.institution}</h3>
+          ${item.institution && item.degree ? `<p class="timeline-subtitle">${item.institution}</p>` : ''}
           ${item.description ? `<p class="timeline-description">${item.description}</p>` : ''}
         </div>
       </div>
@@ -382,9 +382,9 @@ async function loadResumeSection() {
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <span class="timeline-date">${cert.date || 'Current'}</span>
-          <h3 class="timeline-title">${cert.title}</h3>
-          <p class="timeline-subtitle">${cert.issuer}</p>
+          <span class="timeline-date">${cert.period || cert.date || 'Current'}</span>
+          <h3 class="timeline-title">${cert.name || cert.title}</h3>
+          ${cert.issuer ? `<p class="timeline-subtitle">${cert.issuer}</p>` : ''}
           ${cert.description ? `<p class="timeline-description">${cert.description}</p>` : ''}
         </div>
       </div>
@@ -394,25 +394,36 @@ async function loadResumeSection() {
   // Load Experience Timeline
   const expTimeline = document.querySelector('[data-dynamic-content="experience"]');
   if (expTimeline && resumeData.experience) {
-    expTimeline.innerHTML = resumeData.experience.map(exp => `
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-date">${exp.start_date} - ${exp.end_date || 'Present'}</span>
-          <h3 class="timeline-title">${exp.position}</h3>
-          <p class="timeline-subtitle">${exp.company}</p>
-          ${exp.description ? `<p class="timeline-description">${exp.description}</p>` : ''}
+    expTimeline.innerHTML = resumeData.experience.map(exp => {
+      // Handle responsibilities array
+      const responsibilitiesHtml = exp.responsibilities && exp.responsibilities.length > 0
+        ? `<ul class="timeline-responsibilities">${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>`
+        : '';
+
+      return `
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">${exp.period || `${exp.start_date || ''} - ${exp.end_date || 'Present'}`}</span>
+            <h3 class="timeline-title">${exp.title || exp.position}</h3>
+            ${exp.company ? `<p class="timeline-subtitle">${exp.company}</p>` : ''}
+            ${exp.description ? `<p class="timeline-description">${exp.description}</p>` : ''}
+            ${responsibilitiesHtml}
+          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
   // Load Skills Cloud
   const skillsCloud = document.querySelector('[data-dynamic-content="skills"]');
   if (skillsCloud && resumeData.skills) {
-    skillsCloud.innerHTML = resumeData.skills.map(skill => `
-      <span class="skill-tag">${skill.name}</span>
-    `).join('');
+    skillsCloud.innerHTML = resumeData.skills.map(skill => {
+      const title = skill.description
+        ? `${skill.name}\n${skill.description}`
+        : skill.name;
+      return `<span class="skill-tag" title="${title}">${skill.name}</span>`;
+    }).join('');
   }
 }
 
@@ -573,77 +584,9 @@ async function initContactForm() {
 // ============================================================================
 
 function initScrollAnimations() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    console.warn('GSAP or ScrollTrigger not loaded');
-    return;
-  }
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Fade in service cards
-  gsap.from('.service-card', {
-    scrollTrigger: {
-      trigger: '.services-grid',
-      start: 'top 80%'
-    },
-    y: 60,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: 'power3.out'
-  });
-
-  // Animate timeline items
-  gsap.from('.timeline-item', {
-    scrollTrigger: {
-      trigger: '.timeline',
-      start: 'top 75%'
-    },
-    x: -60,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: 'power2.out'
-  });
-
-  // Animate skills
-  gsap.from('.skill-tag', {
-    scrollTrigger: {
-      trigger: '.skills-cloud',
-      start: 'top 80%'
-    },
-    scale: 0,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.05,
-    ease: 'back.out(1.7)'
-  });
-
-  // Animate project cards
-  gsap.from('.bento-item', {
-    scrollTrigger: {
-      trigger: '.bento-grid',
-      start: 'top 75%'
-    },
-    y: 100,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: 'power3.out'
-  });
-
-  // Animate contact cards
-  gsap.from('.contact-info-card', {
-    scrollTrigger: {
-      trigger: '.contact-info',
-      start: 'top 80%'
-    },
-    y: 40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: 'power2.out'
-  });
+  // Disabled scroll animations for cleaner, simpler experience
+  // All content is now immediately visible without fade-in effects
+  console.log('Scroll animations disabled for better UX');
 }
 
 // ============================================================================
