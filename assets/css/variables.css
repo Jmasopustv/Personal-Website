@@ -1,93 +1,224 @@
 /*-----------------------------------*\
-  #VARIABLES
+  #VARIABLES - MODERN DARK THEME 2025
 \*-----------------------------------*/
 
 :root {
   /**
-   * colors
+   * MODERN COLOR SYSTEM
+   * Based on award-winning dark theme portfolios
    */
 
-  /* gradient */
-  --bg-gradient-onyx: linear-gradient(
-    to bottom right,
-    hsl(240, 1%, 25%) 3%,
-    hsl(0, 0%, 19%) 97%
-  );
-  --bg-gradient-jet: linear-gradient(
-    to bottom right,
-    hsla(240, 1%, 18%, 0.251) 0%,
-    hsla(240, 2%, 11%, 0) 100%
-  ), hsl(240, 2%, 13%);
-  --bg-gradient-yellow-1: linear-gradient(
-    to bottom right,
-    hsl(45, 100%, 71%) 0%,
-    hsla(36, 100%, 69%, 0) 50%
-  );
-  --bg-gradient-yellow-2: linear-gradient(
-    135deg,
-    hsla(45, 100%, 71%, 0.251) 0%,
-    hsla(35, 100%, 68%, 0) 59.86%
-  ), hsl(240, 2%, 13%);
-  --border-gradient-onyx: linear-gradient(
-    to bottom right,
-    hsl(0, 0%, 25%) 0%,
-    hsla(0, 0%, 25%, 0) 50%
-  );
-  --text-gradient-yellow: linear-gradient(
-    to right,
-    hsl(45, 100%, 72%),
-    hsl(35, 100%, 68%)
-  );
+  /* PRIMARY BACKGROUNDS - Deep Blue/Purple Palette */
+  --bg-primary: #0a002b;      /* Deep purple-blue - main background */
+  --bg-secondary: #13334b;    /* Dark blue - cards, sections */
+  --bg-tertiary: #062336;     /* Navy blue - elevated elements */
+  --bg-surface: #181a29;      /* Dark grey-blue - surfaces */
+  --bg-elevated: #232736;     /* Slightly lighter - modals, overlays */
 
-  /* solid */
-  --jet: hsl(0, 0%, 22%);
-  --onyx: hsl(240, 1%, 17%);
-  --eerie-black-1: hsl(240, 2%, 13%);
-  --eerie-black-2: hsl(240, 2%, 12%);
-  --smoky-black: hsl(0, 0%, 7%);
-  --white-1: hsl(0, 0%, 100%);
-  --white-2: hsl(0, 0%, 98%);
-  --orange-yellow-crayola: hsl(45, 100%, 72%);
-  --vegas-gold: hsl(45, 54%, 58%);
-  --light-gray: hsl(0, 0%, 84%);
-  --light-gray-70: hsla(0, 0%, 84%, 0.7);
-  --bittersweet-shimmer: hsl(0, 43%, 51%);
+  /* ACCENT COLORS - Electric & Neon */
+  --accent-primary: #2069e0;  /* Electric blue - CTAs, links */
+  --accent-gold: #f4d47c;     /* Golden highlight - hover states */
+  --accent-neon: #00ffff;     /* Cyan - special highlights */
+  --accent-magenta: #ff006e;  /* Magenta pink - secondary accents */
+
+  /* TEXT COLORS - Optimized for dark backgrounds */
+  --text-primary: #ffffff;    /* Pure white - headings */
+  --text-secondary: #bebebe;  /* Light grey - body text */
+  --text-tertiary: #878683;   /* Medium grey - captions */
+  --text-muted: #444444;      /* Dark grey - disabled states */
+
+  /* MODERN GRADIENTS */
+  --gradient-primary: linear-gradient(135deg, #2069e0 0%, #ff006e 100%);
+  --gradient-surface: linear-gradient(145deg, rgba(24,26,41,0.8), rgba(35,39,54,0.6));
+  --gradient-glow: linear-gradient(45deg, #2069e0, #ff006e, #00ffff, #2069e0);
+  --gradient-accent: linear-gradient(to right, #f4d47c, #2069e0);
+  --gradient-overlay: linear-gradient(180deg, rgba(10, 0, 43, 0.8) 0%, rgba(10, 0, 43, 0.95) 100%);
+
+  /* GLASSMORPHISM */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  /* LEGACY COMPATIBILITY - Keep existing variable names working */
+  --bg-gradient-onyx: var(--gradient-surface);
+  --bg-gradient-jet: var(--gradient-surface);
+  --bg-gradient-yellow-1: var(--gradient-accent);
+  --bg-gradient-yellow-2: var(--gradient-accent);
+  --border-gradient-onyx: linear-gradient(to bottom right, var(--glass-border) 0%, transparent 50%);
+  --text-gradient-yellow: var(--gradient-accent);
+
+  --jet: var(--bg-secondary);
+  --onyx: var(--bg-tertiary);
+  --eerie-black-1: var(--bg-surface);
+  --eerie-black-2: var(--bg-primary);
+  --smoky-black: #0a0a0a;
+  --white-1: var(--text-primary);
+  --white-2: var(--text-secondary);
+  --orange-yellow-crayola: var(--accent-gold);
+  --vegas-gold: var(--accent-gold);
+  --light-gray: var(--text-secondary);
+  --light-gray-70: rgba(190, 190, 190, 0.7);
+  --bittersweet-shimmer: var(--accent-magenta);
 
   /**
-   * typography
+   * MODERN TYPOGRAPHY SYSTEM
+   * Darker Grotesque + Merriweather pairing
    */
 
-  /* font-family */
-  --ff-poppins: 'Poppins', sans-serif;
+  /* Font Families */
+  --ff-heading: 'Darker Grotesque', sans-serif;
+  --ff-body: 'Merriweather', serif;
+  --ff-poppins: 'Poppins', sans-serif; /* Fallback for compatibility */
 
-  /* font-size */
-  --fs-1: 24px;
-  --fs-2: 18px;
-  --fs-3: 17px;
-  --fs-4: 16px;
-  --fs-5: 15px;
-  --fs-6: 14px;
-  --fs-7: 13px;
-  --fs-8: 11px;
+  /* Fluid Typography - Responsive font sizes using clamp() */
+  --fs-hero: clamp(3rem, 8vw, 8rem);           /* 48-128px - Hero text */
+  --fs-h1: clamp(2.5rem, 6vw, 5rem);           /* 40-80px - Main headings */
+  --fs-h2: clamp(2rem, 4vw, 3.5rem);           /* 32-56px - Section titles */
+  --fs-h3: clamp(1.5rem, 3vw, 2.5rem);         /* 24-40px - Subsections */
+  --fs-h4: clamp(1.25rem, 2.5vw, 2rem);        /* 20-32px - Card titles */
+  --fs-body-lg: clamp(1.125rem, 2vw, 1.5rem);  /* 18-24px - Large body */
+  --fs-body: clamp(1rem, 1.5vw, 1.25rem);      /* 16-20px - Regular body */
+  --fs-small: clamp(0.875rem, 1.2vw, 1rem);    /* 14-16px - Small text */
+  --fs-tiny: clamp(0.75rem, 1vw, 0.875rem);    /* 12-14px - Captions */
 
-  /* font-weight */
+  /* Legacy font sizes (mapped to new system) */
+  --fs-1: var(--fs-h2);      /* 32-56px */
+  --fs-2: var(--fs-h3);      /* 24-40px */
+  --fs-3: var(--fs-h4);      /* 20-32px */
+  --fs-4: var(--fs-body);    /* 16-20px */
+  --fs-5: var(--fs-small);   /* 14-16px */
+  --fs-6: var(--fs-small);   /* 14-16px */
+  --fs-7: var(--fs-tiny);    /* 12-14px */
+  --fs-8: var(--fs-tiny);    /* 12-14px */
+
+  /* Font Weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Legacy weights */
   --fw-300: 300;
   --fw-400: 400;
   --fw-500: 500;
   --fw-600: 600;
 
-  /**
-   * shadow
-   */
-  --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
-  --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.25);
-  --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.25);
-  --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.15);
-  --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.25);
+  /* Letter Spacing - Optimized for dark backgrounds */
+  --ls-tight: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.05em;
+  --ls-wider: 0.1em;
 
   /**
-   * transition
+   * MODERN SHADOWS & GLOWS
    */
-  --transition-1: 0.25s ease;
-  --transition-2: 0.5s ease-in-out;
+
+  /* Depth shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.45);
+  --shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.55);
+
+  /* Glow effects */
+  --glow-primary: 0 0 20px rgba(32, 105, 224, 0.5);
+  --glow-accent: 0 0 30px rgba(244, 212, 124, 0.6);
+  --glow-neon: 0 0 40px rgba(0, 255, 255, 0.7);
+
+  /* Card shadows with accent glow */
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 20px 60px rgba(32, 105, 224, 0.3);
+
+  /* Legacy shadows */
+  --shadow-1: var(--shadow-sm);
+  --shadow-2: var(--shadow-md);
+  --shadow-3: var(--shadow-lg);
+  --shadow-4: var(--shadow-xl);
+  --shadow-5: var(--shadow-2xl);
+
+  /**
+   * ANIMATIONS & TRANSITIONS
+   */
+
+  /* Timing Functions - Smooth, natural motion */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);     /* Material Design standard */
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Duration values */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 600ms;
+  --duration-slower: 800ms;
+
+  /* Combined transitions */
+  --transition-fast: var(--duration-fast) var(--ease-smooth);
+  --transition-normal: var(--duration-normal) var(--ease-smooth);
+  --transition-slow: var(--duration-slow) var(--ease-smooth);
+
+  /* Legacy transitions */
+  --transition-1: var(--transition-fast);
+  --transition-2: var(--transition-normal);
+
+  /**
+   * SPACING SYSTEM
+   * 8px base unit
+   */
+
+  --space-xs: 0.5rem;   /* 8px */
+  --space-sm: 1rem;     /* 16px */
+  --space-md: 1.5rem;   /* 24px */
+  --space-lg: 2rem;     /* 32px */
+  --space-xl: 3rem;     /* 48px */
+  --space-2xl: 4rem;    /* 64px */
+  --space-3xl: 6rem;    /* 96px */
+
+  /**
+   * BORDER RADIUS
+   */
+
+  --radius-sm: 0.5rem;   /* 8px */
+  --radius-md: 1rem;     /* 16px */
+  --radius-lg: 1.5rem;   /* 24px */
+  --radius-xl: 2rem;     /* 32px */
+  --radius-full: 9999px; /* Fully rounded */
+
+  /**
+   * Z-INDEX SCALE
+   */
+
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1100;
+  --z-fixed: 1200;
+  --z-modal-backdrop: 1300;
+  --z-modal: 1400;
+  --z-popover: 1500;
+  --z-tooltip: 1600;
+
+  /**
+   * LAYOUT
+   */
+
+  --max-width: 1200px;
+  --max-width-lg: 1400px;
+  --max-width-xl: 1600px;
+
+  --sidebar-width: 280px;
+  --navbar-height: 64px;
+
+  /**
+   * BREAKPOINTS (for reference in JS)
+   */
+
+  --bp-sm: 580px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
 }

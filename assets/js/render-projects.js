@@ -31,7 +31,6 @@ export async function renderProjects() {
                 <img src="${imageSrc}" alt="${project.title}" loading="lazy">
               </figure>
               <h3 class="project-title">${project.title}</h3>
-              <p class="project-category">${project.category.charAt(0).toUpperCase() + project.category.slice(1)}</p>
             </a>
           </li>
         `;

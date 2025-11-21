@@ -30,12 +30,23 @@ input, textarea {
 }
 
 ::selection {
-  background: var(--orange-yellow-crayola);
-  color: var(--smoky-black);
+  background: var(--accent-primary);
+  color: var(--text-primary);
 }
 
-:focus { outline-color: var(--orange-yellow-crayola); }
+:focus {
+  outline-color: var(--accent-primary);
+  outline-width: 2px;
+  outline-offset: 2px;
+}
 
-html { font-family: var(--ff-poppins); }
+html {
+  font-family: var(--ff-body);
+  scroll-behavior: smooth;
+}
 
-body { background: var(--smoky-black); }
+body {
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}

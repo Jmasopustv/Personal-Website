@@ -14,6 +14,7 @@ import { renderAbout } from './render-about.js';
 import { renderResume } from './render-resume.js';
 import { renderProjects } from './render-projects.js';
 import { initAnimations } from './animations.js';
+import { initScrollAnimations } from './scroll-animations.js';
 
 // Initialize all modules when DOM is ready
 document.addEventListener("DOMContentLoaded", async () => {
@@ -31,6 +32,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   initContactForm();
   initRepositories();
   initAnimations();
+
+  // Initialize GSAP scroll animations after content is loaded
+  setTimeout(() => {
+    initScrollAnimations();
+  }, 100);
 
   console.log('All modules initialized successfully');
 });
