@@ -1,0 +1,82 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background opacity layer -->
+  <path opacity="0.15" fill-rule="evenodd" clip-rule="evenodd"
+    d="M4 6C4 4.89543 4.89543 4 6 4H34C35.1046 4 36 4.89543 36 6V22H4V6ZM4 24H36V34C36 35.1046 35.1046 36 34 36H6C4.89543 36 4 35.1046 4 34V24Z"
+    fill="url(#paint0_linear)"/>
+
+  <!-- Monitor/Screen frame -->
+  <path d="M2 6C2 3.79086 3.79086 2 6 2H34C36.2091 2 38 3.79086 38 6V22C38 23.1046 37.1046 24 36 24H4C2.89543 24 2 23.1046 2 22V6Z"
+    stroke="url(#paint1_linear)" stroke-width="1.5" fill="none"/>
+
+  <!-- Screen inner content -->
+  <rect x="5" y="5" width="30" height="16" rx="1" fill="url(#paint2_linear)" opacity="0.3"/>
+
+  <!-- Waveform/Signal line 1 -->
+  <path d="M7 13L11 9L15 15L19 11L23 13L27 9L31 12L33 10"
+    stroke="url(#paint3_linear)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Data points on waveform -->
+  <circle cx="11" cy="9" r="1.5" fill="#FFDB6E"/>
+  <circle cx="19" cy="11" r="1.5" fill="#FFDB6E"/>
+  <circle cx="27" cy="9" r="1.5" fill="#FFDB6E"/>
+
+  <!-- Control panel base -->
+  <path d="M8 26H32C33.1046 26 34 26.8954 34 28V34C34 35.1046 33.1046 36 32 36H8C6.89543 36 6 35.1046 6 34V28C6 26.8954 6.89543 26 8 26Z"
+    fill="url(#paint4_linear)"/>
+
+  <!-- Control buttons/indicators -->
+  <circle cx="12" cy="31" r="2" stroke="url(#paint5_linear)" stroke-width="1.2" fill="none"/>
+  <circle cx="20" cy="31" r="2" stroke="url(#paint6_linear)" stroke-width="1.2" fill="none"/>
+  <circle cx="28" cy="31" r="2" stroke="url(#paint7_linear)" stroke-width="1.2" fill="none"/>
+
+  <!-- Indicator lights -->
+  <rect x="10.5" y="29.5" width="3" height="3" rx="0.5" fill="#FFDB6E" opacity="0.8"/>
+  <rect x="26.5" y="29.5" width="3" height="3" rx="0.5" fill="#FFDB6E" opacity="0.5"/>
+
+  <!-- Connection lines from screen to control panel -->
+  <path d="M15 24V26M20 24V26M25 24V26"
+    stroke="url(#paint8_linear)" stroke-width="1" opacity="0.6"/>
+
+  <!-- Alert/Status icon -->
+  <path d="M34 8L36 8M34 12L37 12M34 16L36 16"
+    stroke="#FFDB6E" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+
+  <defs>
+    <linearGradient id="paint0_linear" x1="4" y1="4" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0.259336" stop-color="#FFDB6E"/>
+      <stop offset="1" stop-color="#FFBC5E"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="2" y1="2" x2="38" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0.259336" stop-color="#FFDB6E"/>
+      <stop offset="1" stop-color="#FFBC5E"/>
+    </linearGradient>
+    <linearGradient id="paint2_linear" x1="5" y1="5" x2="35" y2="21" gradientUnits="userSpaceOnUse">
+      <stop offset="0.259336" stop-color="#FFDB6E"/>
+      <stop offset="1" stop-color="#FFBC5E"/>
+    </linearGradient>
+    <linearGradient id="paint3_linear" x1="7" y1="9" x2="33" y2="15" gradientUnits="userSpaceOnUse">
+      <stop offset="0.259336" stop-color="#FFDB6E"/>
+      <stop offset="1" stop-color="#FFBC5E"/>
+    </linearGradient>
+    <linearGradient id="paint4_linear" x1="6" y1="26" x2="34" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0.259336" stop-color="#FFDB6E"/>
+      <stop offset="1" stop-color="#FFBC5E"/>
+    </linearGradient>
+    <linearGradient id="paint5_linear" x1="10" y1="29" x2="14" y2="33" gradientUnits="userSpaceOnUse">
+      <stop offset="0.259336" stop-color="#FFDB6E"/>
+      <stop offset="1" stop-color="#FFBC5E"/>
+    </linearGradient>
+    <linearGradient id="paint6_linear" x1="18" y1="29" x2="22" y2="33" gradientUnits="userSpaceOnUse">
+      <stop offset="0.259336" stop-color="#FFDB6E"/>
+      <stop offset="1" stop-color="#FFBC5E"/>
+    </linearGradient>
+    <linearGradient id="paint7_linear" x1="26" y1="29" x2="30" y2="33" gradientUnits="userSpaceOnUse">
+      <stop offset="0.259336" stop-color="#FFDB6E"/>
+      <stop offset="1" stop-color="#FFBC5E"/>
+    </linearGradient>
+    <linearGradient id="paint8_linear" x1="15" y1="24" x2="25" y2="26" gradientUnits="userSpaceOnUse">
+      <stop offset="0.259336" stop-color="#FFDB6E"/>
+      <stop offset="1" stop-color="#FFBC5E"/>
+    </linearGradient>
+  </defs>
+</svg>
