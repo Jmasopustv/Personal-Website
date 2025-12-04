@@ -122,7 +122,7 @@ select:hover ~ .cursor-outline,
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.25;
+  opacity: 0.4;
   animation: float 20s ease-in-out infinite;
 }
 
