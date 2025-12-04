@@ -198,13 +198,14 @@ select:hover ~ .cursor-outline,
 }
 
 .logo-container {
-  width: 120px;
-  height: 120px;
+  width: 180px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-lg);
   transition: all 0.3s var(--ease-smooth);
+  padding: var(--space-md);
 }
 
 .logo-text {
