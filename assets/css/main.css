@@ -98,6 +98,14 @@ body {
   border-color: rgba(32, 105, 224, 0.3);
 }
 
+/* Hide custom cursor on select elements */
+select:hover ~ .cursor-dot,
+select:hover ~ .cursor-outline,
+.project-filter-dropdown:hover ~ .cursor-dot,
+.project-filter-dropdown:hover ~ .cursor-outline {
+  opacity: 0 !important;
+}
+
 /* Ambient Background */
 .ambient-bg {
   position: fixed;

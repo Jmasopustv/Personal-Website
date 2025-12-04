@@ -157,6 +157,21 @@ function initCustomCursor() {
       cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
     });
   });
+
+  // Hide cursor on select/dropdown elements
+  const selectElements = document.querySelectorAll('select, .project-filter-dropdown');
+
+  selectElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursorDot.style.opacity = '0';
+      cursorOutline.style.opacity = '0';
+    });
+
+    el.addEventListener('mouseleave', () => {
+      cursorDot.style.opacity = '0.6';
+      cursorOutline.style.opacity = '0.5';
+    });
+  });
 }
 
 // ============================================================================
