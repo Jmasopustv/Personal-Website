@@ -38,12 +38,12 @@ function initParticles() {
         }
       },
       opacity: {
-        value: 0.3,
+        value: 0.6,
         random: true,
         anim: {
           enable: true,
           speed: 1,
-          opacity_min: 0.1,
+          opacity_min: 0.3,
           sync: false
         }
       },
@@ -61,7 +61,7 @@ function initParticles() {
         enable: true,
         distance: 150,
         color: '#2069e0',
-        opacity: 0.2,
+        opacity: 0.5,
         width: 1
       },
       move: {
